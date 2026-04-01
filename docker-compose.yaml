@@ -1,0 +1,12 @@
+services:
+  tarantool:
+    image: tarantool/tarantool
+    container_name: tarantool
+    ports:
+      - "3301:3301"  # порт для клиентов Tarantool
+    volumes:
+      - ./tarantool:/opt/tarantool  # директория с init.lua
+    command: >
+      tarantool /opt/tarantool/init.lua
+    restart: unless-stopped
+
