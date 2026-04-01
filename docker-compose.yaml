@@ -3,10 +3,20 @@ services:
     image: tarantool/tarantool
     container_name: tarantool
     ports:
-      - "3301:3301"  # порт для клиентов Tarantool
+      - "3301:3301"
     volumes:
-      - ./tarantool:/opt/tarantool  # директория с init.lua
+      - ./tarantool:/opt/tarantool
     command: >
       tarantool /opt/tarantool/init.lua
     restart: unless-stopped
+
+  vk-mid-sprint:
+    image: vk-mid-sprint:latest
+    build:
+      context: .
+      args:
+        DOCKER_BUILDKIT: 1
+    restart: on-failure
+    ports:
+      - "8080:8080"
 

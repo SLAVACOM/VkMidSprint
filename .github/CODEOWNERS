@@ -1,0 +1,42 @@
+# GitHub CodeOwners
+
+# This file defines who is responsible for different parts of the code
+# Useful for automatic review assignment
+
+# Tarantool integration
+src/main/java/com/slavacom/vkmidsprint/service/tarantool/ @slavacom
+
+# gRPC service layer
+src/main/java/com/slavacom/vkmidsprint/service/KeyValueGrpcService.java @slavacom
+
+# Core business logic
+src/main/java/com/slavacom/vkmidsprint/service/KeyValueService.java @slavacom
+
+# Configuration
+src/main/java/com/slavacom/vkmidsprint/config/ @slavacom
+src/main/java/com/slavacom/vkmidsprint/property/ @slavacom
+
+# Protocol definitions
+src/main/proto/ @slavacom
+
+# Database initialization
+tarantool/ @slavacom
+
+# Documentation
+*.md @slavacom
+docs/ @slavacom
+
+# Configuration files
+*.yml @slavacom
+*.yaml @slavacom
+docker-compose.yaml @slavacom
+Dockerfile @slavacom
+
+# Build configuration
+build.gradle @slavacom
+settings.gradle @slavacom
+gradle.properties @slavacom
+
+# Все остальное
+* @slavacom
+

@@ -3,13 +3,11 @@ spring:
         name: VkMidSprint
     main:
       allow-bean-definition-overriding: true
-grpc:
-  server:
-    port: 9091
-    enable-reflection: true
 
 tarantool:
     host: localhost
     port: 3301
     user: {{TARANUL_USER:appuser}}
     password: {{TARANUL_PASSWORD:apppassword}}
+
+

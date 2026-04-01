@@ -6,6 +6,8 @@ service KeyValueService {
   rpc Put(PutRequest) returns (PutResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);
   rpc Get(GetRequest) returns (GetResponse);
+  rpc GetString(GetRequest) returns (GetStringResponse);
+  rpc Range(RangeRequest) returns (stream RangeResponse);
   rpc Count(CountRequest) returns (CountResponse);
 }
 
@@ -33,6 +35,21 @@ message GetRequest {
 message GetResponse {
   bytes value = 1;
   bool found = 2;
+}
+
+message GetStringResponse {
+  string value = 1;
+  bool found = 2;
+}
+
+message RangeRequest {
+  string key_since = 1;
+  string key_to = 2;
+}
+
+message RangeResponse {
+  string key = 1;
+  bytes value = 2;
 }
 
 message CountRequest {

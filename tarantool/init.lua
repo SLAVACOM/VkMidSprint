@@ -12,6 +12,10 @@ if not box.space.kv then
         {name='value', type='varbinary'}
     })
     s:create_index('primary', {type='hash', parts={'key'}})
+    s:create_index('range_idx', {
+        type = 'tree',
+        parts = {'key'}
+    })
 end
 
 -- Создание пользователя для вашего приложения
