@@ -59,15 +59,37 @@ git clone https://github.com/slavacom/VkMidSprint.git
 cd VkMidSprint
 ```
 
-#### 2. Запуск Tarantool через Docker Compose
+#### 2. Запуск всего проекта через Docker Compose
 
 ```bash
-docker-compose up -d
+docker compose up --build -d
 ```
 
-Это запустит Tarantool на порту `3301` и инициализирует схему базы данных через `tarantool/init.lua`.
+Эта команда поднимет **оба сервиса**:
 
-#### 3. Компиляция и сборка проекта
+- `tarantool` на порту `3301` (инициализация через `tarantool/init.lua`)
+- `vk-mid-sprint` (приложение) из `Dockerfile`
+
+Проверить статус контейнеров:
+
+```bash
+docker compose ps
+docker compose logs -f
+```
+
+Остановить весь стек:
+
+```bash
+docker compose down
+```
+
+> Если нужен только Tarantool для локального запуска приложения из IDE:
+>
+> ```bash
+> docker compose up -d tarantool
+> ```
+
+#### 3. Альтернативный локальный запуск (без контейнера приложения)
 
 ```bash
 ./gradlew clean build

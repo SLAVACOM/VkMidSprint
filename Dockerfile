@@ -1,8 +1,8 @@
 # Stage: build application JAR
-FROM gradle:jdk25-alpine AS builder
+FROM eclipse-temurin:25.0.2_10-jdk-jammy  AS builder
 WORKDIR /application
 COPY . .
-RUN --mount=type=cache,target=/root/.gradle gradle clean build -x test
+RUN --mount=type=cache,target=/root/.gradle chmod +x gradlew && ./gradlew clean bootJar  -x test
 
 # Stage: extract Spring Boot application layers
 FROM bellsoft/liberica-openjre-alpine:25-cds AS layers
@@ -28,7 +28,7 @@ COPY --from=layers /application/extracted/snapshot-dependencies/ ./
 COPY --from=layers /application/extracted/application/ ./
 
 # Generate CDS archive
-RUN java -XX:ArchiveClassesAtExit=app.jsa -Dspring.context.exit=onRefresh -jar app.jar || true
+RUN #java -XX:ArchiveClassesAtExit=app.jsa -Dspring.context.exit=onRefresh -jar app.jar || true
 
 # JVM options
 ENV JAVA_CDS_OPTS="-XX:SharedArchiveFile=app.jsa -Xlog:class+load:file=/tmp/classload.log"
