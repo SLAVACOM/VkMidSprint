@@ -22,4 +22,4 @@ jobs:
           java-version: '25'
 
       - name: Run tests
-        run: ./mvnw test
+        run: ./gradlew test
